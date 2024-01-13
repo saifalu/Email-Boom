@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+         #showcontainer{
+            display: block;
+            width: 400px;
+            height: 500px;
+            background-color: white;
+            color: black;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #h21{
+            color: rgb(26, 218, 26);
+        }
+
+        #p21{
+            margin-top: 70px;
+        }
+        #circle{
+            width: 100px;
+            height: 100px;
+            margin: 0px 0px 0px 150px;
+            border: 2px solid rgba(29, 28, 28, 0.386);
+            border-radius: 60px;
+            background-color: red;
+            color: white;
+        }
+        #h31{
+            margin: 27px;
+        }
+        #h41{
+            display: none;
+            margin-top: 100px;
+            color: rgb(26, 218, 26);
+        }
+    </style>
+</head>
+<body>
+    <div id="showcontainer">
+        <h2 id="h21">Process Initiated</h2>
+
+        <p id="p21">Number of Email sent</p>
+        <div id="circle">
+            <h1 id="h31">0</h1>
+        </div>
+        
+        <h2 id="h41">Task Completed Successfully</h2>
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        const socket = io ('http://127.0.0.1:4000');
+
+        function updatecount(data) {
+            countnum = document.getElementById('h31');
+            countnum.innerText = String(data.count);
+
+        }
+
+        socket.on('countupdated', data=>{
+            console.log(data, data.count)
+            updatecount(data.count)
+        });
+
+    </script>
+</body>
+</html>

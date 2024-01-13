@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(20, 69, 69);
+        }
+        #maincontainer{
+            width: 500px;
+            height: 800px;
+            background-color: white;
+            color: black;
+            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-wrap: wrap;
+
+        }
+        .inputdata{
+            width: 400px;
+            height: 20px;
+            border: 2px solid black;
+            margin: 6px;
+            padding: 6px;
+            border-radius: 3px;
+        }
+        #warning1{
+            margin: 0 50px 50px 50px;
+            font-size: 13px;
+        }
+
+        #email-text{
+            width: 400px;
+            height: 300px;
+            border: 2px solid black;
+            margin: 6px;
+            padding: 6px;
+        }
+        #fire-button{
+            width: 100px;
+            height: 40px;
+            background-color: rgb(210, 45, 45);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        #fire-button:hover{
+            width: 120px;
+            height: 50px;
+            background-color: rgb(182, 24, 24);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        span{
+            font-size: 20px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+   
+
+    <div id="maincontainer">
+        <form action="/submit1" method="POST">
+            <span>Credentials</span>
+            <input class="inputdata" placeholder="ENTER YOUR EMAIL ADDRESS" name="senderemail" type="email">
+            <input class="inputdata" placeholder="ENTER RECEIPENT'S EMAIl ADDRESS" name="receipentemail" type="email">
+            <input class="inputdata" placeholder="ENTER NO. OF EMAILS EX- 50" name="numberedemails" type="number">
+            <input class="inputdata" placeholder="APP PASSWORD" name="password" type="password">
+            <p id="warning1">(<b>APP PASSWORD</b> is not that password which you use for log into your gmail. To get the <b>APP PASSWORD</b> take the help of given <b>video</b>)</p>
+            <span>Email Content</span>
+            <input class="inputdata" placeholder="EMAIL SUBJECT" name="subject" type="text">
+            <textarea id="email-text" placeholder="ENTER YOUR MESSAGE HERE" name="emailtext"></textarea>
+            <button type="submit" id="fire-button">Fire Emails</button>
+        </form>
+    </div>
+
+
+
+    <script>
+
+        document.getElementById('fire-button').addEventListener('click', async function () {
+            const formData = {
+                senderemail: document.getElementsByName('senderemail')[0].value,
+                receipentemail: document.getElementsByName('receipentemail')[0].value,
+                numberedemails: document.getElementsByName('numberedemails')[0].value,
+                password: document.getElementsByName('password')[0].value,
+                subject: document.getElementsByName('subject')[0].value,
+                emailtext: document.getElementsByName('emailtext')[0].value,
+            };
+
+            const response = await fetch('/submit1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+        });
+
+        
+    </script>
+</body>
+</html>
