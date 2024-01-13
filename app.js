@@ -72,7 +72,7 @@ app.post('/submit1', (req, resp) => {
             if (error) {
                 console.error('Error:', error);
             } else {
-                console.log('Email sent:', info.response);
+                console.log('Email sent:', info.response)
             }
         });
     }
