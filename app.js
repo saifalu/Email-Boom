@@ -73,7 +73,6 @@ app.post('/submit1', (req, resp) => {
                 console.error('Error:', error);
             } else {
                 console.log('Email sent:', info.response);
-                console.log('Preview URL:', nodemailer.getTestMessageUrl(info));
             }
         });
     }
