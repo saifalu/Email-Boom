@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
     cors: {
-        origin: "http://127.0.0.1:4000",
+        origin: "https://email-boom.azurewebsites.net",
         methods: ["GET", "POST"]
     }
 });
