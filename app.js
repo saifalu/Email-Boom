@@ -49,6 +49,7 @@ app.post('/submit1', (req, resp) => {
         if (count >= number) {
             clearInterval(intervalId);
         } else {
+            if(count<number)
             count += 1;
         }
     }, 3000);
