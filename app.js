@@ -3,6 +3,9 @@ const app = express();
 const path = require('path');
 const nodemailer = require('nodemailer');
 const http = require('http').createServer(app);
+
+const PORT = process.env.PORT || 3000
+
 const io = require('socket.io')(http, {
     cors: {
         origin: "https://email-boom.azurewebsites.net",
@@ -78,6 +81,6 @@ app.post('/submit1', (req, resp) => {
     }
 });
 
-http.listen(4000, () => {
+http.listen(PORT, () => {
     console.log('server is active on port 4000');
 });
