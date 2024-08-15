@@ -16,6 +16,16 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: Configure AWS credentials
+      run: |
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+        aws configure set default.region $AWS_REGION
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+
     - name: Create ECR repository (if it doesn't exist)
       run: |
         aws ecr describe-repositories --repository-names $IMAGE_REPO_NAME --region $AWS_REGION || \
@@ -54,4 +64,5 @@ jobs:
         eb init -p docker $EB_ENV_NAME --region $AWS_REGION
         eb use $EB_ENV_NAME
         eb deploy --label $IMAGE_TAG
+
 
