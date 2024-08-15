@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
     socket.emit('countupdated', { count: 0 });
 });
 
-let count = 1;
 
 app.post('/submit1', (req, resp) => {
     const senderemail = req.body.senderemail;
@@ -40,7 +39,7 @@ app.post('/submit1', (req, resp) => {
 
     resp.sendFile(path.join(__dirname, 'static', 'result.html'));
 
-
+    let count = 1;
     // Use setInterval to schedule the mailkaro function with a delay of 10 seconds
     const intervalId = setInterval(() => {
         mailkaro(count);
